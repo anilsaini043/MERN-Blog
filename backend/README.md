@@ -19,3 +19,5 @@
 # User login controller and route path created
 # JWT token implementation for login and token stored in cookie.
 # Fetched user details for logged in user
+
+# User logout controller and route path with get req created

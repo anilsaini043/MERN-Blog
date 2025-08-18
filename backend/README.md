@@ -15,3 +15,7 @@
 # User route path created in "Server.js"
 # Regiser route path (post req) created in "user.route.js"
 # Default middleware created
+
+# User login controller and route path created
+# JWT token implementation for login and token stored in cookie.
+# Fetched user details for logged in user

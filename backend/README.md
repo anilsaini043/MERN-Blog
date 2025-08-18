@@ -8,3 +8,10 @@
 # Account created in MongoDb
 # Mongodb project and Cluster created
 # Node server created and app is running locally
+
+# User model created for Register a new user
+# User controller created
+# Bcrypt used for password encryption
+# User route path created in "Server.js"
+# Regiser route path (post req) created in "user.route.js"
+# Default middleware created

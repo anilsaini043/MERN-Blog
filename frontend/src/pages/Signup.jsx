@@ -5,10 +5,14 @@ import { Label } from "../components/ui/label"
 import { Input } from "../components/ui/input"
 import { Button } from "../components/ui/button"
 import { Eye, EyeOff } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
+import axios from 'axios'
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
@@ -26,7 +30,25 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const res = await axios.post("http://localhost:8000/api/v1/user/register", user, {
+        headers: {
+          "Content-Type": "application/json"
+        },
+        withCredentials: true
+      });
+
+      if (res.data.success) {
+        navigate('/login');
+        toast.success(res.data.message)
+      }
+
+    } catch (error) {
+      console.log("ERROR--", error);
+      toast.error(error.response.data.message)
+    }
   }
+
   return (
     <div className='flex h-screen md:pt-14 md:h-[760px]'>
       <div className='hidden md:block'>

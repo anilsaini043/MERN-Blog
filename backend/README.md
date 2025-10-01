@@ -21,3 +21,4 @@
 # Fetched user details for logged in user
 
 # User logout controller and route path with get req created
+# Fixed cors issue

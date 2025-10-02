@@ -13,3 +13,4 @@
 # Integrated Toast notification as Sooner component
 # After login redirect to Login page
 # Used of useNavigation hook for navigation
+# Avatar img implemented for logged in user

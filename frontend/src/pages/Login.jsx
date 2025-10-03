@@ -4,10 +4,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card"
 import { Label } from "../components/ui/label"
 import { Input } from "../components/ui/input"
 import { Button } from "../components/ui/button"
-import { Eye, EyeOff } from 'lucide-react'
+import { Eye, EyeOff, Loader2 } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'sonner'
+import { useDispatch, useSelector } from 'react-redux'
+import { setUser, setLoading } from '../redux/authSlice'
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -15,7 +17,9 @@ const Login = () => {
     email: "",
     password: ""
   })
+  const { loading } = useSelector(store => store.auth)
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,6 +32,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      dispatch(setLoading(true))
       const res = await axios.post("http://localhost:8000/api/v1/user/login", login, {
         headers: {
           "Content-Type": "application/json"
@@ -37,12 +42,14 @@ const Login = () => {
 
       if (res.data.success) {
         navigate('/');
+        dispatch(setUser(res.data.user))
         toast.success(res.data.message)
       }
-
     } catch (error) {
       console.log("ERROR--", error);
       toast.error(error.response.data.message)
+    } finally {
+      dispatch(setLoading(false))
     }
   }
 
@@ -73,7 +80,15 @@ const Login = () => {
                   {showPassword ? <EyeOff size={20}></EyeOff> : <Eye size={20}></Eye>}
                 </button>
               </div>
-              <Button type="submit" className="w-full">Login</Button>
+              <Button type="submit" className="w-full">
+                {
+                  loading ? (
+                    <>
+                      <Loader2 className='mr-2 w-4 h-4 animate-spin' />Please wait...
+                    </>
+                  ) : ("Login")
+                }
+              </Button>
               <p className='text-center text-gray-600 dark:text-300'>Don't have an account?
                 <Link to={'/signup'}>
                   <span className='underline cursor-pointer hover:text-gray-800 dark:hover:text-gray-100'>Sign up</span>

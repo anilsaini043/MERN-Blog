@@ -14,3 +14,8 @@
 # After login redirect to Login page
 # Used of useNavigation hook for navigation
 # Avatar img implemented for logged in user
+# Installed and Setup of Redux-toolkit
+# Store created and configured
+# Created Slice of auth, theme
+# Dark and Light theme implemented
+# Loader implemented during Login and Signup

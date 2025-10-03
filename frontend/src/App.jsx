@@ -6,7 +6,6 @@ import Blogs from './pages/Blogs';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Navbar from './components/Navbar';
-import { Toaster } from 'sonner';
 
 const router = createBrowserRouter([
   {
@@ -35,7 +34,6 @@ const App = () => {
   return (
     <>
       <RouterProvider router={router} />
-      <Toaster />
     </>
   )
 }

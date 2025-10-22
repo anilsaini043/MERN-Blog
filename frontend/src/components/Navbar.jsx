@@ -5,12 +5,26 @@ import Logo from "../assets/logo.png"
 import { Input } from './ui/input'
 import { FaMoon, FaSun } from "react-icons/fa";
 import { Search } from 'lucide-react'
+import { FiUser } from "react-icons/fi";
+import { PiGithubLogoLight } from "react-icons/pi";
+import { TfiCommentsSmiley } from "react-icons/tfi";
+import { TfiWrite } from "react-icons/tfi";
+import { IoMdLogOut } from "react-icons/io";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleTheme } from '../redux/themeSlice'
 import { setUser } from '../redux/authSlice'
 import axios from 'axios'
 import { toast } from 'sonner'
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+    DropdownMenuShortcut
+} from "../components/ui/dropdown-menu"
 
 const Navbar = () => {
     const { user } = useSelector(store => store.auth);
@@ -18,12 +32,12 @@ const Navbar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleLogout = async() => {
+    const handleLogout = async () => {
         try {
             const res = await axios.get('http://localhost:8000/api/v1/user/logout', {
                 withCredential: true
             })
-            if(res.data.success){
+            if (res.data.success) {
                 navigate("/");
                 dispatch(setUser(null))
                 toast.success(res.data.message)
@@ -71,10 +85,43 @@ const Navbar = () => {
                         </Button>
                         {
                             user ? <div className='ml-7 flex gap-3 items-center'>
-                                <Avatar>
-                                    <AvatarImage src="https://github.com/shadcn.png" />
-                                    <AvatarFallback>CN</AvatarFallback>
-                                </Avatar>
+                                {/* Profile menu */}
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger><Avatar>
+                                        <AvatarImage src="https://github.com/shadcn.png" />
+                                        <AvatarFallback>CN</AvatarFallback>
+                                    </Avatar></DropdownMenuTrigger>
+                                    <DropdownMenuContent>
+                                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                                        <DropdownMenuSeparator />
+                                        <DropdownMenuItem>
+                                            <FiUser />
+                                            Profile
+                                            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                                        </DropdownMenuItem>
+                                        <DropdownMenuItem>
+                                            <PiGithubLogoLight />
+                                            Your Blog
+                                            <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+                                        </DropdownMenuItem>
+                                        <DropdownMenuItem>
+                                            <TfiCommentsSmiley />
+                                            Comments
+                                            <DropdownMenuShortcut>⌘+B</DropdownMenuShortcut>
+                                        </DropdownMenuItem>
+                                        <DropdownMenuItem>
+                                            <TfiWrite />
+                                            Write Blog
+                                            <DropdownMenuShortcut>⌘+N</DropdownMenuShortcut>
+                                        </DropdownMenuItem>
+                                        <DropdownMenuItem>
+                                            <IoMdLogOut />
+                                            Log out
+                                            <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+                                        </DropdownMenuItem>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+
                                 <Button onClick={handleLogout}>Logout</Button>
                             </div>
                                 : <div className='ml-7 md:flex gap-2'>

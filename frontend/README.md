@@ -19,3 +19,8 @@
 # Created Slice of auth, theme
 # Dark and Light theme implemented
 # Loader implemented during Login and Signup
+# Profile dropdown implemented with the multiple list
+# Created sidebar with mulitple tabs
+# Used outlet to show the router page
+# Used NavLink with isActive tab in sidebar
+# Created multiple sidebar pages

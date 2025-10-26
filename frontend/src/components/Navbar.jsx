@@ -94,22 +94,22 @@ const Navbar = () => {
                                     <DropdownMenuContent>
                                         <DropdownMenuLabel>My Account</DropdownMenuLabel>
                                         <DropdownMenuSeparator />
-                                        <DropdownMenuItem>
+                                        <DropdownMenuItem onClick={()=>navigate('/dashboard/profile')}>
                                             <FiUser />
                                             Profile
                                             <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                                         </DropdownMenuItem>
-                                        <DropdownMenuItem>
+                                        <DropdownMenuItem onClick={()=>navigate('/dashboard/your-blog')}>
                                             <PiGithubLogoLight />
                                             Your Blog
                                             <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
                                         </DropdownMenuItem>
-                                        <DropdownMenuItem>
+                                        <DropdownMenuItem onClick={()=>navigate('/dashboard/comments')}>
                                             <TfiCommentsSmiley />
                                             Comments
                                             <DropdownMenuShortcut>⌘+B</DropdownMenuShortcut>
                                         </DropdownMenuItem>
-                                        <DropdownMenuItem>
+                                        <DropdownMenuItem onClick={()=>navigate('/dashboard/write-blog')}>
                                             <TfiWrite />
                                             Write Blog
                                             <DropdownMenuShortcut>⌘+N</DropdownMenuShortcut>

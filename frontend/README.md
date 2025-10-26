@@ -27,3 +27,5 @@
 # vite.config.js updated which can help to consider path which start with "@"
 # Profile page UI created
 # Edit profile page popup UI created
+# Navigation added for profile items like Profie, comments, your blog, write blog
+# Redux-Persist implemented to avoid redux store data loss while refresh the page

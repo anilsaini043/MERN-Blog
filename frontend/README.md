@@ -24,3 +24,6 @@
 # Used outlet to show the router page
 # Used NavLink with isActive tab in sidebar
 # Created multiple sidebar pages
+# vite.config.js updated which can help to consider path which start with "@"
+# Profile page UI created
+# Edit profile page popup UI created

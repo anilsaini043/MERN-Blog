@@ -122,3 +122,4 @@ export const logout = async (_, res) => {
         })
     }
 }
+

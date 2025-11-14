@@ -22,3 +22,5 @@
 
 # User logout controller and route path with get req created
 # Fixed cors issue
+
+# Use these Services to Upload the Images : Cloudinary, AWS S3, Firebase Storage, or Supabase Storage.
